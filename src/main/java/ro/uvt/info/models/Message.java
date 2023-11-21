@@ -6,11 +6,10 @@ import lombok.Getter;
 import ro.uvt.info.services.AtreidesHouse;
 import ro.uvt.info.services.HarkonnenHouse;
 import ro.uvt.info.services.HouseStrategy;
-import ro.uvt.info.services.MessiHouse;
 
 import java.util.Date;
 
-public class Message {
+public class Message implements Visitee {
 
     @JsonProperty("date")
     @JsonSetter
@@ -31,7 +30,6 @@ public class Message {
         return switch (House) {
             case "atreides" -> new AtreidesHouse();
             case "harkonnen" -> new HarkonnenHouse();
-            case "messi" -> new MessiHouse();
             default -> null;
         };
     }
@@ -41,4 +39,8 @@ public class Message {
         this.HouseStrategy.printMessage(Message);
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitMessage(this);
+    }
 }

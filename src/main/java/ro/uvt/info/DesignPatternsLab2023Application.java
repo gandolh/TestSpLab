@@ -3,7 +3,9 @@ package ro.uvt.info;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ro.uvt.info.models.Conversation;
 import ro.uvt.info.models.Message;
+import ro.uvt.info.services.RenderContentVisitor;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
@@ -19,11 +21,14 @@ public class DesignPatternsLab2023Application {
         var messages = new ObjectMapper().readValue(
                 new URL("file:src/messages.json"),
                 new TypeReference<List<Message>>(){});
-
+        Conversation conversation = new Conversation();
 
         for (Message message: messages) {
-            message.print();
+            conversation.getMessageList().add(message);
         }
-        System.out.println(messages);
+
+        RenderContentVisitor visitor = new RenderContentVisitor();
+        conversation.accept(visitor);
+
     }
 }
