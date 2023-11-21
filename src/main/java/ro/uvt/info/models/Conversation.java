@@ -4,6 +4,7 @@ package ro.uvt.info.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,7 @@ public class Conversation implements Visitee {
     }
 
     public void print(){
-        for (Message message: messageList) {
-            message.print();
-        }
+        System.out.println("Conversation");
     }
 
     @Override

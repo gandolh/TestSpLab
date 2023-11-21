@@ -14,6 +14,9 @@ public class RenderContentVisitor implements Visitor<Void> {
 
     public Void visitConversation(Conversation conversation){
         conversation.print();
+        for (Message message: conversation.getMessageList()) {
+            message.accept(this);
+        }
         return  null;
     }
 }
