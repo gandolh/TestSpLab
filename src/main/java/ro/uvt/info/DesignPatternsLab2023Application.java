@@ -16,10 +16,14 @@ public class DesignPatternsLab2023Application {
 
     public static void main(String[] args) throws IOException {
 //		SpringApplication.run(DesignPatternsLab2023Application.class, args);
-        var x = new ObjectMapper().readValue(
+        var messages = new ObjectMapper().readValue(
                 new URL("file:src/messages.json"),
                 new TypeReference<List<Message>>(){});
 
-        System.out.println(x);
+
+        for (Message message: messages) {
+            message.print();
+        }
+        System.out.println(messages);
     }
 }
