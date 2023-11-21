@@ -36,6 +36,7 @@ public class Message implements Visitee {
     public void print(){
         if(this.HouseStrategy == null )
             this.HouseStrategy = getHouseStrategy();
+        System.out.println("Mesaj trimis la data de " + Date);
         this.HouseStrategy.printMessage(Message);
     }
 
